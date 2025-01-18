@@ -3,7 +3,13 @@ System implementation of the Blind Source Separation Algorithm using a dual micr
 ---
 
 ## System Description
-The two microphones will take in sound from different sources. For example, sound taken from inside of the vehicle and from outside of the vehicle. The two audio signals will be used as input to the Blind Source Separation (BSS) algorithm and audio synthesizer to generate a single output audio signal. The output signal will be a synthesized signal of the two inputs. The weight of each input to the output signal will be determined by input to the microcontroller. The output signal will then pass a Pulse Width Modulation (PWM) generator to be converted to a pulse wave that will pass through an output driver and low pass filter to a earphone jack.  
+The two microphones will take in sound from different sources. For example, sound taken from inside of the vehicle and from outside of the vehicle. 
+The two audio signals will be used as input to the Blind Source Separation (BSS) algorithm and audio synthesizer to generate a single output audio signal. 
+The output signal will be a synthesized signal of the two inputs. The weight of each input to the output signal will be determined by input to the microcontroller. 
+The output signal will then pass a Pulse Width Modulation (PWM) generator to be converted to a pulse wave that will pass through an output driver and low pass filter to a earphone jack.
+System testing and verification will be done using a microcontroller. Once tested, the BSS algorithm, audio synthesizer, and PWM signal generator will be implemented using a FPGA.  
+
+![System Overview](./Images/system_overview.png)
 
 ## Microphone Module
 1. Schematic

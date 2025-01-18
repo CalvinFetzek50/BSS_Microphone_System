@@ -1,0 +1,18 @@
+* C:\Users\calvi\OneDrive - University of Pittsburgh\EGR - Undergraduate Research\Audio Processing\BSS_Microphone_System\Microphone\LTspice Circuit\Microphone input.asc
+XU1 N005 N001 VCC 0 N002 OPA1656
+V1 VCC 0 15
+V§MIC N003 0 SINE(0 0.1m 5k)
+R1 VCC N003 13.7k
+C3 N001 N003 2.2µ
+R2 N002 N001 75k
+C2 N002 N001 10p
+R3 VCC N005 100k
+R5 N005 0 100k
+C6 N005 0 2.2µ
+R4 N004 N002 49.9
+C5 out N004 2.2µ
+R6 out 0 100k
+.include C:\Users\calvi\AppData\Local\LTspice\lib\sub\OPA1656.lib
+.tran 1m
+.backanno
+.end
