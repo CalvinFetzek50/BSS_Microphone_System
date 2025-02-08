@@ -28,7 +28,7 @@ System testing and verification will be done using a microcontroller. Once teste
 2. **Simulation Output**
 
     The circuit was simulted using LTSpice.
-    Transient analysis show the input voltage in the mV range being amplified to the designed levels of $1.228V_{rms}$ .
+    Transient analysis show the input voltage in the mV range being amplified to the designed levels of $1.228V_{rms}$.
 
     ![Amplification Characteristics](./Images/microphone_output.png)
 
@@ -54,7 +54,7 @@ System testing and verification will be done using a microcontroller. Once teste
 
         - Resistor R1
 
-            The value of R1 was computed based on the operating voltage of the microphone nad max current consumption: 
+            The value of R1 was computed based on the operating voltage of the microphone nad max current consumption:
 
             $ R_1 = \frac{V_{cc}-V_{MIC}}{I_{max}}$
 
@@ -137,6 +137,17 @@ System testing and verification will be done using a microcontroller. Once teste
     [CMA-6542PF Electret Condenser Microphone](https://www.sameskydevices.com/product/resource/cma-6542pf.pdf)
 
 5. **Measurements using a Breadboard**
+
+
+## Analog to Digital Converter (ADC)
+
+1. **Configurartion**
+
+
+2. **Reference**
+
+    Yifeng Zhu. (2018). Embedded Systems with ARM Cortex-M Microcontrollers in Assembly Language and C. Third Edition, (pp. 481-500). E-Man Press.  
+
 
 ## Speaker Module
 
