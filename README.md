@@ -1,6 +1,8 @@
 # BSS_Microphone_System
 
-System implementation of the Blind Source Separation Algorithm using a dual microphone connected to a microcontroller and speaker
+System implementation of the Blind Source Separation Algorithm using a dual microphone connected to a microcontroller and speaker.
+
+Updated: 2/8/2025
 
 ---
 
@@ -13,6 +15,14 @@ The output signal will then pass a Pulse Width Modulation (PWM) generator to be 
 System testing and verification will be done using a microcontroller. Once tested, the BSS algorithm, audio synthesizer, and PWM signal generator will be implemented using a FPGA.  
 
 ![System Overview](./Images/system_overview.png)
+
+## Table of Contents
+
+[Microphone Module](https://github.com/CalvinFetzek50/BSS_Microphone_System/tree/main?tab=readme-ov-file#microphone-module)
+
+[Analog to Digital Converter(ADC)](https://github.com/CalvinFetzek50/BSS_Microphone_System/tree/main?tab=readme-ov-file#analog-to-digital-converter-adc)
+
+[Speaker Module](https://github.com/CalvinFetzek50/BSS_Microphone_System/tree/main?tab=readme-ov-file#speaker-module)
 
 ## Microphone Module
 
@@ -128,8 +138,7 @@ System testing and verification will be done using a microcontroller. Once teste
 
 4. **Reference**
 
-    [Single-Supply, Electret Microphone Pre-Amplifier 
-    Reference Design by John Caldwell](
+    [Single-Supply, Electret Microphone Pre-Amplifier Reference Design by John Caldwell](
     https://www.ti.com/lit/ug/tidu765/tidu765.pdf?ts=1737720645372&ref_url=https%253A%252F%252Fwww.google.com%252F)
 
     [OPA1656 Audio Operational Amplifiers](https://www.ti.com/product/OPA1656#design-development)
@@ -138,16 +147,19 @@ System testing and verification will be done using a microcontroller. Once teste
 
 5. **Measurements using a Breadboard**
 
-
 ## Analog to Digital Converter (ADC)
 
 1. **Configurartion**
 
+    The ADC will be set up to use direct memory address (DMA) to store signals in the ADC register to the main memory. This reduces CPU usage when recording data from the microphone. It wall also implement ping-pong buffering, which uses two buffers to overlap data transfer and data processsing. This further reduces CPU usage as it allows the processor more time to process data without pausing ADC conversion. The system architecture is shown below.
+
+    ![ADC system Overview](./Images/ADC_system_overview.png)
+
+    STM32L476RGTX development board was used for the prototyping. The ADC / DMA cnofiguration is done through the STM32L4 Hardware Abstraction Layer (HAL).  
 
 2. **Reference**
 
     Yifeng Zhu. (2018). Embedded Systems with ARM Cortex-M Microcontrollers in Assembly Language and C. Third Edition, (pp. 481-500). E-Man Press.  
-
 
 ## Speaker Module
 
