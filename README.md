@@ -2,7 +2,7 @@
 
 System implementation of the Blind Source Separation Algorithm using a dual microphone connected to a microcontroller and speaker.
 
-Updated: 2/8/2025
+Updated: 2/16/2025
 
 ---
 
@@ -165,8 +165,51 @@ System testing and verification will be done using a microcontroller. Once teste
 
 1. **Schematic**
 
+    The speaker will be connected to a gate driver to allow dead time to turn on / off the MOSFETS
+    using PWM signals generated from the microcontroller. The component selected was IR2302 half-bridge driver from international rectifier,
+    however, there was no SPICE model available for this part. Therefore, it was simulated using LM5113 in the schamatic below.
+    The speaker / audio jack is represented by a $8\Omega$ resistor.
+
+    ![Schematic Speaker](./Images/Schematic_speaker.png) 
+
 2. **Simulation Output**
+
+    The PWM signal (given as a square wave) is amplified by the half-bridge driver and it is smooth out by the low pass filter.
+
+    ![Speaker Simulation](./Images/Simulation_speaker.png) 
 
 3. **Component Selection and Calcualtions**
 
+    - **IR2302 Half-Bridge Driver**
+
+        A half-bridge driver was selected to allow deadtime to switch on /off the MOSFET that provides the 5V voltage to the
+        speaker. IR2302's operation range met the criteria both in the logic input voltage as the microcontroller can only send out 3.3V
+        PWM signals as well as the gate drive supply range of 5 to 20V where we only need 5V to be supplied to the low pass filter.
+
+        | Parameter | Value | Units |
+        | ----------- | ----------- |----------- |
+        | Logic Input Voltage ($V_{IN}$) | 0 - $V_{CC}$ | V |
+        | Low side and logic fixed supply voltage (V_{CC}$)  | 5-20 | V |
+
+    - **Low Pass Filter Selection**
+
+        The low pass filter was configured to set a 3dB bandwidth at 20kHz with a quality factor of 0.707 using the following formula
+        where Q is the quality factor, $f_0$ is the cutoff frequency, $L$ is the inductance, $C$ is the capacitance of the low pass filter.
+
+        $ f_0 = \frac{\omega_0}{2\pi} = \frac{1}{2\pi\sqrt{LC}}$
+
+        $ Q = R_L\sqrt{\frac{C}{L}} $
+
+        By rearranging this formula we get:
+
+        $ L = \frac{R_L \sqrt{2}}{\omega_0} = 90\mu H $
+
+        $ C = \frac{1}{\omega_0 R_L \sqrt{2}}  = 0.7\mu F$
+
 4. **Reference**
+
+    [Class D Amplifiers: Fundamentals of Operation and Recent Developments](https://www.analog.com/en/resources/technical-articles/fundamentals-of-class-d-amplifiers.html)
+
+    [Singled Ended Filter Calculations](https://www.ti.com/lit/an/slaa701a/slaa701a.pdf)
+
+    [IR 2302 Half-bridge driver](https://www.infineon.com/dgdl/ir2302.pdf?fileId=5546d462533600a4015355c988b216de)
